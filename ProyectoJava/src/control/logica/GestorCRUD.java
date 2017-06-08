@@ -82,10 +82,10 @@ public class GestorCRUD {
 	public boolean escribeLista(Object objeto) {
 		if (tipo == Tipo.articulo) {
 			listaArticulos.add((Articulo) objeto);
-			return new DAO().grabar(listaArticulos, tipo.getRuta(), true);
+			return new DAO().grabar(listaArticulos, tipo.getRuta(), tipo.isLista());
 		} else if (tipo == Tipo.cliente) {
 			listaClientes.add((Persona) objeto);
-			return new DAO().grabar(listaClientes, tipo.getRuta(), true);
+			return new DAO().grabar(listaClientes, tipo.getRuta(), tipo.isLista());
 		}
 		return false;
 	}
