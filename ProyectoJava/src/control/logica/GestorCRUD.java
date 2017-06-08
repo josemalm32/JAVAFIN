@@ -24,6 +24,7 @@ public class GestorCRUD {
 		if (tipo == Tipo.cliente) {
 			if (new File(Tipo.cliente.getRuta()).exists()) {
 				listaClientes = (ArrayList<Persona>) dao.leer(Tipo.cliente.getRuta(), Tipo.cliente.isLista());
+				
 			} else {
 				listaClientes = new ArrayList<Persona>();
 			}
