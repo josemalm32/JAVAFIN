@@ -57,6 +57,7 @@ public class GestorCRUD {
 
 		}
 
+		
 	}
 
 	public ArrayList<Articulo> getListaArticulo() {
