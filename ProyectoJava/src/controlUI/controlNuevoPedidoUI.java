@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 import Modelo.Articulo;
@@ -75,7 +74,7 @@ public class controlNuevoPedidoUI extends AltaPedido {
 		
 		validar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-			Pedido pedido =new Pedido(gestorClientes.getListaPersona().get(comboBox.getSelectedIndex()), lineasPedidos, new Date(), 1);
+			Pedido pedido =new Pedido(gestorClientes.getListaPersona().get(comboBox.getSelectedIndex()), lineasPedidos, new Date(), gestorPedido.dameIDPedido());
 			new DAO().grabar(pedido, Tipo.pedido.getRuta(), Tipo.pedido.isLista());
 			}
 		});

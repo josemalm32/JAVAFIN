@@ -1,6 +1,6 @@
 package Vista;
 
-import java.awt.EventQueue;
+
 
 import javax.swing.JInternalFrame;
 import java.awt.GridBagLayout;
@@ -9,14 +9,10 @@ import java.awt.GridBagConstraints;
 import javax.swing.JLabel;
 import java.awt.Insets;
 import javax.swing.JTextField;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+
 import javax.swing.JTextPane;
 import java.awt.Font;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import net.miginfocom.swing.MigLayout;
+
 
 public class NuevoArticuloUI extends JInternalFrame {
 	protected JTextField idTexField;
@@ -97,10 +93,7 @@ public class NuevoArticuloUI extends JInternalFrame {
 		getContentPane().add(PrecioText, gbc_PrecioText);
 		
 		btnValidar = new JButton("Validar");
-		btnValidar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
+		
 		GridBagConstraints gbc_btnValidar = new GridBagConstraints();
 		gbc_btnValidar.anchor = GridBagConstraints.NORTHWEST;
 		gbc_btnValidar.insets = new Insets(0, 0, 5, 5);

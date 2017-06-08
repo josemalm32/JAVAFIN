@@ -5,7 +5,6 @@ import java.awt.event.ItemListener;
 
 import javax.swing.DefaultComboBoxModel;
 
-import Modelo.Articulo;
 import Modelo.Persona;
 import Vista.VerClienteUI;
 import control.logica.GestorCRUD;

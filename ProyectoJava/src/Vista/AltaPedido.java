@@ -1,9 +1,6 @@
 package Vista;
 
-import java.awt.EventQueue;
-
 import javax.swing.JInternalFrame;
-import java.awt.GridLayout;
 import java.awt.GridBagLayout;
 import javax.swing.JPanel;
 import javax.swing.JTable;
@@ -12,21 +9,12 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
-import javax.swing.border.CompoundBorder;
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.RowSpec;
 
-import Modelo.Articulo;
-import Modelo.Persona;
 
-import com.jgoodies.forms.layout.FormSpecs;
 import java.awt.Label;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import javax.swing.JTextArea;
-import javax.swing.border.MatteBorder;
-import java.awt.Color;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
@@ -52,8 +40,8 @@ public class AltaPedido extends JInternalFrame {
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[] { 901, 0 };
 		gridBagLayout.rowHeights = new int[] { 140, 140, 208, 35, 0 };
-		gridBagLayout.columnWeights = new double[] { 0.0, Double.MIN_VALUE };
-		gridBagLayout.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
+		gridBagLayout.columnWeights = new double[] { 1.0, Double.MIN_VALUE };
+		gridBagLayout.rowWeights = new double[] { 1.0, 1.0, 1.0, 0.0, Double.MIN_VALUE };
 		getContentPane().setLayout(gridBagLayout);
 
 		JPanel panel = new JPanel();
@@ -65,9 +53,9 @@ public class AltaPedido extends JInternalFrame {
 		getContentPane().add(panel, gbc_panel);
 		GridBagLayout gbl_panel = new GridBagLayout();
 		gbl_panel.columnWidths = new int[] { 83, 157, 66, 46, 499, 0 };
-		gbl_panel.rowHeights = new int[] { 50, 25, 22, 0 };
-		gbl_panel.columnWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
-		gbl_panel.rowWeights = new double[] { 0.0, 0.0, 0.0, Double.MIN_VALUE };
+		gbl_panel.rowHeights = new int[] { 61, 25, 22, 0 };
+		gbl_panel.columnWeights = new double[] { 1.0, 1.0, 0.0, 1.0, 0.0, Double.MIN_VALUE };
+		gbl_panel.rowWeights = new double[] { 1.0, 1.0, 1.0, Double.MIN_VALUE };
 		panel.setLayout(gbl_panel);
 
 		JLabel lblCliente = new JLabel("Cliente");
@@ -119,7 +107,7 @@ public class AltaPedido extends JInternalFrame {
 
 		JLabel lblDireccion = new JLabel("Direccion");
 		GridBagConstraints gbc_lblDireccion = new GridBagConstraints();
-		gbc_lblDireccion.fill = GridBagConstraints.HORIZONTAL;
+		gbc_lblDireccion.anchor = GridBagConstraints.EAST;
 		gbc_lblDireccion.insets = new Insets(0, 0, 5, 5);
 		gbc_lblDireccion.gridx = 3;
 		gbc_lblDireccion.gridy = 1;
@@ -147,8 +135,8 @@ public class AltaPedido extends JInternalFrame {
 		apellidoText.setEditable(false);
 		apellidoText.setColumns(10);
 		GridBagConstraints gbc_apellidoText = new GridBagConstraints();
-		gbc_apellidoText.anchor = GridBagConstraints.NORTH;
 		gbc_apellidoText.fill = GridBagConstraints.HORIZONTAL;
+		gbc_apellidoText.anchor = GridBagConstraints.NORTH;
 		gbc_apellidoText.insets = new Insets(0, 0, 0, 5);
 		gbc_apellidoText.gridx = 1;
 		gbc_apellidoText.gridy = 2;
@@ -164,8 +152,8 @@ public class AltaPedido extends JInternalFrame {
 		GridBagLayout gbl_panel_1 = new GridBagLayout();
 		gbl_panel_1.columnWidths = new int[] { 75, 153, 188, 43, 173, 73, 0, 43, 75, 0 };
 		gbl_panel_1.rowHeights = new int[] { 31, 22, 23, 23, 0 };
-		gbl_panel_1.columnWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
-		gbl_panel_1.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
+		gbl_panel_1.columnWeights = new double[] { 1.0, 1.0, 0.0, 1.0, 1.0, 0.0, 1.0, 1.0, 1.0, Double.MIN_VALUE };
+		gbl_panel_1.rowWeights = new double[] { 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE };
 		panel_1.setLayout(gbl_panel_1);
 
 		JLabel lblArticulo = new JLabel("Articulo");
@@ -199,8 +187,7 @@ public class AltaPedido extends JInternalFrame {
 
 		JLabel lblDetalle = new JLabel("Detalle");
 		GridBagConstraints gbc_lblDetalle = new GridBagConstraints();
-		gbc_lblDetalle.anchor = GridBagConstraints.NORTH;
-		gbc_lblDetalle.fill = GridBagConstraints.HORIZONTAL;
+		gbc_lblDetalle.anchor = GridBagConstraints.NORTHEAST;
 		gbc_lblDetalle.insets = new Insets(0, 0, 5, 5);
 		gbc_lblDetalle.gridx = 3;
 		gbc_lblDetalle.gridy = 1;
@@ -219,7 +206,7 @@ public class AltaPedido extends JInternalFrame {
 		validar = new JButton("Validar Pedido");
 		GridBagConstraints gbc_validar = new GridBagConstraints();
 		gbc_validar.gridwidth = 3;
-		gbc_validar.insets = new Insets(0, 0, 5, 5);
+		gbc_validar.insets = new Insets(0, 0, 5, 0);
 		gbc_validar.gridx = 6;
 		gbc_validar.gridy = 1;
 		panel_1.add(validar, gbc_validar);
@@ -259,22 +246,24 @@ public class AltaPedido extends JInternalFrame {
 		gbc_cantidadText.gridy = 3;
 		panel_1.add(cantidadText, gbc_cantidadText);
 		cantidadText.setColumns(10);
-
-		anadir = new JButton("+");
-		GridBagConstraints gbc_anadir = new GridBagConstraints();
-		gbc_anadir.anchor = GridBagConstraints.NORTH;
-		gbc_anadir.fill = GridBagConstraints.HORIZONTAL;
-		gbc_anadir.insets = new Insets(0, 0, 0, 5);
-		gbc_anadir.gridx = 7;
-		gbc_anadir.gridy = 3;
-		panel_1.add(anadir, gbc_anadir);
-
-		quitar = new JButton("-");
-		GridBagConstraints gbc_quitar = new GridBagConstraints();
-		gbc_quitar.anchor = GridBagConstraints.NORTHWEST;
-		gbc_quitar.gridx = 8;
-		gbc_quitar.gridy = 3;
-		panel_1.add(quitar, gbc_quitar);
+						
+								anadir = new JButton("+");
+								GridBagConstraints gbc_anadir = new GridBagConstraints();
+								gbc_anadir.anchor = GridBagConstraints.NORTH;
+								gbc_anadir.fill = GridBagConstraints.HORIZONTAL;
+								gbc_anadir.insets = new Insets(0, 0, 0, 5);
+								gbc_anadir.gridx = 6;
+								gbc_anadir.gridy = 3;
+								panel_1.add(anadir, gbc_anadir);
+				
+						quitar = new JButton("-");
+						GridBagConstraints gbc_quitar = new GridBagConstraints();
+						gbc_quitar.insets = new Insets(0, 0, 0, 5);
+						gbc_quitar.fill = GridBagConstraints.HORIZONTAL;
+						gbc_quitar.anchor = GridBagConstraints.NORTH;
+						gbc_quitar.gridx = 7;
+						gbc_quitar.gridy = 3;
+						panel_1.add(quitar, gbc_quitar);
 
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);

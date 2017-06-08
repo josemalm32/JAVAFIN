@@ -1,27 +1,18 @@
 package Vista;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
+
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.GridLayout;
-import javax.swing.JInternalFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
-import java.awt.CardLayout;
-import java.awt.FlowLayout;
-import javax.swing.JPopupMenu;
 import javax.swing.WindowConstants;
 
-import java.awt.Component;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+
 import javax.swing.JMenuItem;
 import javax.swing.JDesktopPane;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class PrincipalUI extends JFrame {
 
