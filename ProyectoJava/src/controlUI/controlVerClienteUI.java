@@ -1,5 +1,7 @@
 package controlUI;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
@@ -21,8 +23,8 @@ public class controlVerClienteUI extends VerClienteUI{
 			comboBox.addItem(item.getDNI() + " - " +item.getNombre() + " " + item.getApellido());
 		}
 		
-		comboBox.addItemListener(new ItemListener() {
-			public void itemStateChanged(ItemEvent arg0) {
+		comboBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
 			Persona persona = gestorCRUD.getListaPersona().get(comboBox.getSelectedIndex());
 			
 			NombreText.setText(persona.getNombre());

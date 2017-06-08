@@ -31,6 +31,15 @@ public class controlNuevoArticuloUI extends NuevoArticuloUI{
 			}
 		});
 		
+		btnCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {				
+				int respuesta = JOptionPane.showConfirmDialog(null, "Va cancelar el Articulo, ¿esta seguro?", "AVISO!!!!!", JOptionPane.YES_NO_OPTION);
+		        if (respuesta == JOptionPane.YES_OPTION) {
+		        	limpiarUI();
+		        }
+			}
+		});
+		
 	}
 	
 	private void desbloquearUI() {
