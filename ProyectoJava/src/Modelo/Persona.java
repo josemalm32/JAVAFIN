@@ -34,4 +34,5 @@ public class Persona implements Serializable{
 		return Direccion;
 	} 
 		
+		
 }

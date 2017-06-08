@@ -10,17 +10,22 @@ import java.awt.Font;
 import java.awt.Insets;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import javax.swing.JMenuBar;
+import javax.swing.ImageIcon;
+import javax.swing.SwingConstants;
 
 public class NuevoClienteUI extends JInternalFrame {
 	protected JTextField dniText;
 	protected JTextField nombreText;
 	protected JTextField apellidoText;
 	protected JTextField direccionText;
-	protected JButton cancelarBtn;
+	private JMenuBar menuBar;
+	protected JButton nuevo;
 	protected JButton btnValidar;
+	protected JButton cancelar;
 
 	public NuevoClienteUI() {
-		setBounds(100, 100, 886, 417);
+		setBounds(100, 100, 914, 500);
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
@@ -44,6 +49,7 @@ public class NuevoClienteUI extends JInternalFrame {
 		getContentPane().add(lblDni, gbc_lblDni);
 		
 		dniText = new JTextField();
+		dniText.setEnabled(false);
 		GridBagConstraints gbc_dniText = new GridBagConstraints();
 		gbc_dniText.insets = new Insets(0, 0, 5, 5);
 		gbc_dniText.fill = GridBagConstraints.HORIZONTAL;
@@ -60,6 +66,7 @@ public class NuevoClienteUI extends JInternalFrame {
 		getContentPane().add(lblNombre, gbc_lblNombre);
 		
 		nombreText = new JTextField();
+		nombreText.setEnabled(false);
 		GridBagConstraints gbc_nombreText = new GridBagConstraints();
 		gbc_nombreText.insets = new Insets(0, 0, 5, 5);
 		gbc_nombreText.fill = GridBagConstraints.HORIZONTAL;
@@ -76,6 +83,7 @@ public class NuevoClienteUI extends JInternalFrame {
 		getContentPane().add(lblApellido, gbc_lblApellido);
 		
 		apellidoText = new JTextField();
+		apellidoText.setEnabled(false);
 		GridBagConstraints gbc_apellidoText = new GridBagConstraints();
 		gbc_apellidoText.insets = new Insets(0, 0, 5, 5);
 		gbc_apellidoText.fill = GridBagConstraints.HORIZONTAL;
@@ -83,13 +91,6 @@ public class NuevoClienteUI extends JInternalFrame {
 		gbc_apellidoText.gridy = 7;
 		getContentPane().add(apellidoText, gbc_apellidoText);
 		apellidoText.setColumns(10);
-		
-		btnValidar = new JButton("Validar");
-		GridBagConstraints gbc_btnValidar = new GridBagConstraints();
-		gbc_btnValidar.insets = new Insets(0, 0, 5, 5);
-		gbc_btnValidar.gridx = 11;
-		gbc_btnValidar.gridy = 7;
-		getContentPane().add(btnValidar, gbc_btnValidar);
 		
 		JLabel lblDireccion = new JLabel("Direccion");
 		GridBagConstraints gbc_lblDireccion = new GridBagConstraints();
@@ -99,6 +100,7 @@ public class NuevoClienteUI extends JInternalFrame {
 		getContentPane().add(lblDireccion, gbc_lblDireccion);
 		
 		direccionText = new JTextField();
+		direccionText.setEnabled(false);
 		GridBagConstraints gbc_direccionText = new GridBagConstraints();
 		gbc_direccionText.insets = new Insets(0, 0, 5, 5);
 		gbc_direccionText.fill = GridBagConstraints.HORIZONTAL;
@@ -107,13 +109,23 @@ public class NuevoClienteUI extends JInternalFrame {
 		getContentPane().add(direccionText, gbc_direccionText);
 		direccionText.setColumns(10);
 		
-		cancelarBtn = new JButton("Cancelar");
-		GridBagConstraints gbc_cancelarBtn = new GridBagConstraints();
-		gbc_cancelarBtn.gridheight = 2;
-		gbc_cancelarBtn.insets = new Insets(0, 0, 5, 5);
-		gbc_cancelarBtn.gridx = 11;
-		gbc_cancelarBtn.gridy = 9;
-		getContentPane().add(cancelarBtn, gbc_cancelarBtn);
+		menuBar = new JMenuBar();
+		setJMenuBar(menuBar);
+		
+		nuevo = new JButton("Nuevo");
+		nuevo.setHorizontalAlignment(SwingConstants.TRAILING);
+		nuevo.setIcon(new ImageIcon(NuevoClienteUI.class.getResource("/recursos/Knob Add.png")));
+		menuBar.add(nuevo);
+		
+		btnValidar = new JButton("Validar");
+		btnValidar.setEnabled(false);
+		btnValidar.setIcon(new ImageIcon(NuevoClienteUI.class.getResource("/recursos/Knob Valid Green.png")));
+		menuBar.add(btnValidar);
+		
+		cancelar = new JButton("Cancelar");
+		cancelar.setEnabled(false);
+		cancelar.setIcon(new ImageIcon(NuevoClienteUI.class.getResource("/recursos/Knob Cancel.png")));
+		menuBar.add(cancelar);
 
 	}
 

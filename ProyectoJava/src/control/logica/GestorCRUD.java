@@ -3,6 +3,7 @@ package control.logica;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import Modelo.Articulo;
 import Modelo.DAO;
@@ -37,11 +38,11 @@ public class GestorCRUD {
 			}
 
 		} else if (tipo == Tipo.pedido) {
-			if (new File("pedidos.dat").exists()) {
+			if (new File(Tipo.pedido.getRuta()).exists()) {
 				listaPedido = new ArrayList<Pedido>();
 				boolean temporal = true;
 				while (temporal) {
-					Pedido pedidotemp = (Pedido) dao.leer(tipo.getRuta(), tipo.isLista());
+					Pedido pedidotemp = (Pedido) dao.leer(Tipo.pedido.getRuta(), Tipo.pedido.isLista());
 					if (pedidotemp != null) {
 						IDPedido++;
 						listaPedido.add(pedidotemp);
@@ -73,6 +74,17 @@ public class GestorCRUD {
 
 	public int dameIDPedido() {
 		return this.IDPedido;
+	}
+
+	public boolean compruebaDNI(String DNI) {
+		
+		for (Persona item : listaClientes) {
+			if (DNI.equals(item.getDNI().trim()) ) {
+				return false;
+			}
+		}
+		
+		return true;
 	}
 
 	public boolean escribeLista(Object objeto) {

@@ -2,6 +2,7 @@ package control;
 
 import java.awt.EventQueue;
 
+import javax.swing.JFrame;
 import javax.swing.UIManager;
 
 import controlUI.controlPrincipal;
@@ -21,7 +22,7 @@ public class Principal {
 						e.printStackTrace();
 					}
 					controlPrincipal frame = new controlPrincipal();
-					
+					  frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();

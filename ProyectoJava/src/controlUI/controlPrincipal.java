@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyVetoException;
 
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import Vista.PrincipalUI;
@@ -100,6 +101,16 @@ public class controlPrincipal extends PrincipalUI {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+			}
+		});
+		
+		salir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				int respuesta = JOptionPane.showConfirmDialog(null, "Va a cerrar el programa, ¿esta seguro?", "AVISO!!!!!", JOptionPane.YES_NO_OPTION);
+		        if (respuesta == JOptionPane.YES_OPTION) {
+		        	JOptionPane.showMessageDialog(null, "JMASTUDIO Recomienda hacer copias de seguridad periodicamente");
+		          System.exit(0);
+		        }
 			}
 		});
 		
