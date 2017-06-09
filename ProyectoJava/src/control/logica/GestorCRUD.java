@@ -64,6 +64,7 @@ public class GestorCRUD {
 		return listaClientes;
 	}
 
+	
 	public ArrayList<Pedido> getListaPedido() {
 		return listaPedido;
 	}

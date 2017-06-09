@@ -33,7 +33,7 @@ public class NuevoArticuloUI extends JInternalFrame {
 		gridBagLayout.columnWidths = new int[]{76, 140, 42, 65, 242, 0};
 		gridBagLayout.rowHeights = new int[]{51, 20, 108, 118, 0};
 		gridBagLayout.columnWeights = new double[]{1.0, 1.0, 0.0, 1.0, 1.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{0.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
 		getContentPane().setLayout(gridBagLayout);
 		
 		JLabel lblAltaArticulos = new JLabel("Alta Articulos");

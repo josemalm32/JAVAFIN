@@ -21,18 +21,18 @@ import control.logica.GestorCRUD;
 import utiles.Tipo;
 
 @SuppressWarnings("serial")
-public class controlNuevoPedidoUI extends AltaPedido {
+public class controlNuevoPedidoUI extends AltaPedido implements IControlAltas, IConsulta {
 
 	private GestorCRUD gestorArticulos = new GestorCRUD(Tipo.articulo);
 	private GestorCRUD gestorClientes = new GestorCRUD(Tipo.cliente);
 	private GestorCRUD gestorPedido = new GestorCRUD(Tipo.pedido);
 	private ArrayList<Lineas> lineasPedidos = new ArrayList<Lineas>();
-
+	private float total = 0;
 	private int Lineas;
 
 	public controlNuevoPedidoUI() {
 		super();
-		llenarComboBox();
+		llenaCombo();
 
 		comboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -54,20 +54,21 @@ public class controlNuevoPedidoUI extends AltaPedido {
 
 		anadir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-
 				if (!precioText.getText().isEmpty()) {
-
-					if (!cantidadText.getText().isEmpty()) {
+					if (!cantidadText.getText().isEmpty() && esNumerico(cantidadText.getText())) {
 						DefaultTableModel modelo = (DefaultTableModel) table.getModel();
 						Object[] rowData = { Lineas, comboBox_1.getSelectedItem().toString(),
 								Integer.valueOf(cantidadText.getText()), Float.valueOf(precioText.getText()),
 								Integer.valueOf(cantidadText.getText()) * Float.valueOf(precioText.getText()) };
+						total = total + Integer.valueOf(cantidadText.getText()) * Float.valueOf(precioText.getText());
 						Lineas lineasTemp = new Lineas(
 								gestorArticulos.getListaArticulo().get(comboBox_1.getSelectedIndex()),
 								Integer.valueOf(cantidadText.getText()), Lineas);
 						lineasPedidos.add(lineasTemp);
 						modelo.addRow(rowData);
 						Lineas++;
+						lblTotal_1.setText(String.valueOf(total) + "€");
+						cantidadText.setText("");
 					} else {
 						JOptionPane.showMessageDialog(null, "No hay cantidad selecionada");
 					}
@@ -82,8 +83,12 @@ public class controlNuevoPedidoUI extends AltaPedido {
 		quitar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				DefaultTableModel modelo = (DefaultTableModel) table.getModel();
-				modelo.removeRow(table.getSelectedRow());
+				total = total - lineasPedidos.get(table.getSelectedRow()).getCantidad()
+						* lineasPedidos.get(table.getSelectedRow()).getArticulo().getPrecio();
+				lblTotal_1.setText(total + "€");
 				lineasPedidos.remove(table.getSelectedRow());
+				modelo.removeRow(table.getSelectedRow());
+
 			}
 		});
 
@@ -98,39 +103,42 @@ public class controlNuevoPedidoUI extends AltaPedido {
 				guardar();
 			}
 		});
-		
+
 		cancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				int respuesta = JOptionPane.showConfirmDialog(null, "Va cancelar el Pedido, ¿esta seguro?", "AVISO!!!!!", JOptionPane.YES_NO_OPTION);
-		        if (respuesta == JOptionPane.YES_OPTION) {
-		        	limpiaUI();
-		        }
-				
+				int respuesta = JOptionPane.showConfirmDialog(null, "Va cancelar el Pedido, ¿esta seguro?",
+						"AVISO!!!!!", JOptionPane.YES_NO_OPTION);
+				if (respuesta == JOptionPane.YES_OPTION) {
+					limpiaUI();
+				}
+
 			}
 		});
 
 	}
-	
-	
-	
-	private void desbloqueaUI() {
-		comboBox.setEnabled(true);
-		comboBox_1.setEnabled(true);
-		table.setEnabled(true);
-		cantidadText.setEnabled(true);
-		nuevo.setEnabled(false);
-		cancelar.setEnabled(true);
-		validar.setEnabled(true);
-		anadir.setEnabled(true);
-		quitar.setEnabled(true);
+
+	@Override
+	public void llenaCombo() {
+		comboBox_1.setModel(new DefaultComboBoxModel<String>());
+		for (Articulo item : gestorArticulos.getListaArticulo()) {
+			comboBox_1.addItem(item.getID() + " - " + item.getNombre() + " - " + item.getPrecio());
+		}
+
+		comboBox.setModel(new DefaultComboBoxModel<String>());
+		for (Persona item : gestorClientes.getListaPersona()) {
+			comboBox.addItem(item.getDNI() + " - " + item.getNombre() + " " + item.getApellido());
+		}
+
 	}
 
-	private void guardar() {
+	@Override
+	public void guardar() {
 		if (!nombreText.getText().isEmpty()) {
 			if (!lineasPedidos.isEmpty()) {
 				Pedido pedido = new Pedido(gestorClientes.getListaPersona().get(comboBox.getSelectedIndex()),
 						lineasPedidos, new Date(), gestorPedido.dameIDPedido());
 				new DAO().grabar(pedido, Tipo.pedido.getRuta(), Tipo.pedido.isLista());
+				//new DAO().grabar(pedido, Tipo.pedido.getRuta(), Tipo.pedido.isLista());
 				limpiaUI();
 				JOptionPane.showMessageDialog(null, "Pedido añadido correctamente :)");
 			} else {
@@ -139,15 +147,18 @@ public class controlNuevoPedidoUI extends AltaPedido {
 		} else {
 			JOptionPane.showMessageDialog(null, "Cliente no selecionado");
 		}
+
 	}
 
-	private void limpiaUI() {
+	@Override
+	public void limpiaUI() {
 		nombreText.setText("");
 		apellidoText.setText("");
 		direccionText.setText("");
 		precioText.setText("");
 		cantidadText.setText("");
 		detalleText.setText("");
+		lblTotal_1.setText("0.00€");
 		cantidadText.setEnabled(false);
 		DefaultTableModel modelo = (DefaultTableModel) table.getModel();
 		modelo.setRowCount(0);
@@ -164,18 +175,30 @@ public class controlNuevoPedidoUI extends AltaPedido {
 
 	}
 
-	private void llenarComboBox() {
+	@Override
+	public void desbloqueaUI() {
+		comboBox.setEnabled(true);
+		comboBox_1.setEnabled(true);
+		table.setEnabled(true);
+		cantidadText.setEnabled(true);
+		nuevo.setEnabled(false);
+		cancelar.setEnabled(true);
+		validar.setEnabled(true);
+		anadir.setEnabled(true);
+		quitar.setEnabled(true);
+	}
 
-		comboBox_1.setModel(new DefaultComboBoxModel<String>());
-		for (Articulo item : gestorArticulos.getListaArticulo()) {
-			comboBox_1.addItem(item.getID() + " - " + item.getNombre() + " - " + item.getPrecio());
-		}
-
-		comboBox.setModel(new DefaultComboBoxModel<String>());
-		for (Persona item : gestorClientes.getListaPersona()) {
-			comboBox.addItem(item.getDNI() + " - " + item.getNombre() + " " + item.getApellido());
-		}
-
+	@Override
+	public boolean esNumerico(String str) {
+		 try
+		    {
+		      double d = Integer.parseInt(str);
+		    }
+		    catch(NumberFormatException nfe)
+		    {
+		      return false;
+		    }
+		    return true;
 	}
 
 }

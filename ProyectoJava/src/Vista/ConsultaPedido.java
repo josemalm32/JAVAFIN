@@ -25,6 +25,7 @@ public class ConsultaPedido extends JInternalFrame {
 	protected JTextField dni;
 	protected JTextField id;
 	protected JTextField Fecha;
+	protected JLabel total;
 	
 		public ConsultaPedido() {
 		setBounds(100, 100, 1014, 524);
@@ -85,6 +86,8 @@ public class ConsultaPedido extends JInternalFrame {
 		getContentPane().add(lblNombre, gbc_lblNombre);
 		
 		nombre = new JTextField("");
+		nombre.setEnabled(false);
+		nombre.setEditable(false);
 		GridBagConstraints gbc_nombre = new GridBagConstraints();
 		gbc_nombre.fill = GridBagConstraints.HORIZONTAL;
 		gbc_nombre.gridwidth = 4;
@@ -102,6 +105,8 @@ public class ConsultaPedido extends JInternalFrame {
 		getContentPane().add(lblDni, gbc_lblDni);
 		
 		dni = new JTextField("");
+		dni.setEnabled(false);
+		dni.setEditable(false);
 		GridBagConstraints gbc_dni = new GridBagConstraints();
 		gbc_dni.fill = GridBagConstraints.HORIZONTAL;
 		gbc_dni.gridwidth = 6;
@@ -119,6 +124,8 @@ public class ConsultaPedido extends JInternalFrame {
 		getContentPane().add(lblApellido, gbc_lblApellido);
 		
 		apellido = new JTextField("");
+		apellido.setEnabled(false);
+		apellido.setEditable(false);
 		GridBagConstraints gbc_apellido = new GridBagConstraints();
 		gbc_apellido.fill = GridBagConstraints.HORIZONTAL;
 		gbc_apellido.gridwidth = 4;
@@ -136,6 +143,8 @@ public class ConsultaPedido extends JInternalFrame {
 		getContentPane().add(lblDireccion, gbc_lblDireccion);
 		
 		direcion = new JTextField("");
+		direcion.setEnabled(false);
+		direcion.setEditable(false);
 		GridBagConstraints gbc_direcion = new GridBagConstraints();
 		gbc_direcion.fill = GridBagConstraints.HORIZONTAL;
 		gbc_direcion.gridwidth = 4;
@@ -162,6 +171,8 @@ public class ConsultaPedido extends JInternalFrame {
 		getContentPane().add(lblId, gbc_lblId);
 		
 		id = new JTextField("");
+		id.setEnabled(false);
+		id.setEditable(false);
 		GridBagConstraints gbc_id = new GridBagConstraints();
 		gbc_id.gridwidth = 2;
 		gbc_id.fill = GridBagConstraints.HORIZONTAL;
@@ -169,6 +180,20 @@ public class ConsultaPedido extends JInternalFrame {
 		gbc_id.gridx = 2;
 		gbc_id.gridy = 8;
 		getContentPane().add(id, gbc_id);
+		
+		JLabel lblTotal = new JLabel("Total: ");
+		GridBagConstraints gbc_lblTotal = new GridBagConstraints();
+		gbc_lblTotal.insets = new Insets(0, 0, 5, 5);
+		gbc_lblTotal.gridx = 10;
+		gbc_lblTotal.gridy = 8;
+		getContentPane().add(lblTotal, gbc_lblTotal);
+		
+		total = new JLabel("");
+		GridBagConstraints gbc_total = new GridBagConstraints();
+		gbc_total.insets = new Insets(0, 0, 5, 5);
+		gbc_total.gridx = 11;
+		gbc_total.gridy = 8;
+		getContentPane().add(total, gbc_total);
 		
 		JLabel lblFecha = new JLabel("Fecha:");
 		GridBagConstraints gbc_lblFecha = new GridBagConstraints();
@@ -179,6 +204,8 @@ public class ConsultaPedido extends JInternalFrame {
 		getContentPane().add(lblFecha, gbc_lblFecha);
 		
 		Fecha = new JTextField("");
+		Fecha.setEnabled(false);
+		Fecha.setEditable(false);
 		GridBagConstraints gbc_Fecha = new GridBagConstraints();
 		gbc_Fecha.fill = GridBagConstraints.HORIZONTAL;
 		gbc_Fecha.gridwidth = 4;
@@ -198,6 +225,8 @@ public class ConsultaPedido extends JInternalFrame {
 		getContentPane().add(scrollPane, gbc_scrollPane);
 		
 		table = new JTable();
+		table.setEnabled(false);
+		table.setRowSelectionAllowed(false);
 		table.setModel(new DefaultTableModel(
 				new Object[][] {
 				},

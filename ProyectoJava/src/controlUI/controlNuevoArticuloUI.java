@@ -11,7 +11,7 @@ import control.logica.GestorCRUD;
 import utiles.Tipo;
 
 @SuppressWarnings("serial")
-public class controlNuevoArticuloUI extends NuevoArticuloUI{
+public class controlNuevoArticuloUI extends NuevoArticuloUI implements IControlAltas{
 
 	GestorCRUD gestorCRUDArticulos = new GestorCRUD(Tipo.articulo);
 	
@@ -27,7 +27,7 @@ public class controlNuevoArticuloUI extends NuevoArticuloUI{
 		btnNuevo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
-				desbloquearUI();
+				desbloqueaUI();
 			}
 		});
 		
@@ -35,14 +35,29 @@ public class controlNuevoArticuloUI extends NuevoArticuloUI{
 			public void actionPerformed(ActionEvent arg0) {				
 				int respuesta = JOptionPane.showConfirmDialog(null, "Va cancelar el Articulo, ¿esta seguro?", "AVISO!!!!!", JOptionPane.YES_NO_OPTION);
 		        if (respuesta == JOptionPane.YES_OPTION) {
-		        	limpiarUI();
+		        	limpiaUI();
 		        }
 			}
 		});
 		
 	}
 	
-	private void desbloquearUI() {
+	@Override
+	public boolean esNumerico(String str)
+	  {
+	    try
+	    {
+	      double d = Double.parseDouble(str);
+	    }
+	    catch(NumberFormatException nfe)
+	    {
+	      return false;
+	    }
+	    return true;
+	  }
+	
+	@Override
+	public void desbloqueaUI() {
 		nombreText.setEnabled(true);
 		PrecioText.setEnabled(true);
 		DetallePane.setEnabled(true);
@@ -52,7 +67,8 @@ public class controlNuevoArticuloUI extends NuevoArticuloUI{
 		idTexField.setText(String.valueOf(gestorCRUDArticulos.devuelveID()));
 	}
 	
-	private void limpiarUI() {
+	@Override
+	public void limpiaUI() {
 		nombreText.setText("");
 		nombreText.setEnabled(false);
 		PrecioText.setEnabled(false);
@@ -65,13 +81,14 @@ public class controlNuevoArticuloUI extends NuevoArticuloUI{
 		btnNuevo.setEnabled(true);
 	}
 	
-	private void guardar(){
-		if(PrecioText.getText().length() >= 1){
+	@Override
+	public void guardar(){
+		if(PrecioText.getText().length() >= 1 && esNumerico(PrecioText.getText())){
 			if(DetallePane.getText().length() >= 1){
 			
 				Articulo articuloTemp = new Articulo(Integer.valueOf(idTexField.getText()), nombreText.getText(), DetallePane.getText(),Float.valueOf(PrecioText.getText()));
 				if (gestorCRUDArticulos.escribeLista(articuloTemp)){
-					limpiarUI();
+					limpiaUI();
 					JOptionPane.showMessageDialog(null, "Articulo Introducido Correctamente :).");							
 				}else{
 					

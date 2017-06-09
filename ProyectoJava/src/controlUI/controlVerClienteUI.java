@@ -12,17 +12,12 @@ import Vista.VerClienteUI;
 import control.logica.GestorCRUD;
 import utiles.Tipo;
 
-public class controlVerClienteUI extends VerClienteUI{
-
+public class controlVerClienteUI extends VerClienteUI implements IConsulta{
+	GestorCRUD gestorCRUD = new GestorCRUD(Tipo.cliente);
+	
 	public controlVerClienteUI() {
-		super();
-		GestorCRUD gestorCRUD = new GestorCRUD(Tipo.cliente);
-		
-		comboBox.setModel(new DefaultComboBoxModel<String>());
-		for (Persona item : gestorCRUD.getListaPersona()) {
-			comboBox.addItem(item.getDNI() + " - " +item.getNombre() + " " + item.getApellido());
-		}
-		
+		super();		
+		llenaCombo();
 		comboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			Persona persona = gestorCRUD.getListaPersona().get(comboBox.getSelectedIndex());
@@ -37,6 +32,14 @@ public class controlVerClienteUI extends VerClienteUI{
 		
 		
 		
+	}
+
+	@Override
+	public void llenaCombo() {
+			comboBox.setModel(new DefaultComboBoxModel<String>());
+		for (Persona item : gestorCRUD.getListaPersona()) {
+			comboBox.addItem(item.getDNI() + " - " +item.getNombre() + " " + item.getApellido());
+		}
 	}
 		
 }

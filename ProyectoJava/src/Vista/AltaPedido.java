@@ -30,7 +30,6 @@ public class AltaPedido extends JInternalFrame {
 	protected JTextField cantidadText;
 	protected JComboBox<String> comboBox;
 	protected JComboBox<String> comboBox_1;
-	protected JLabel lblTotal;
 	protected JButton quitar;
 	protected JButton anadir;
 	protected JButton validar;
@@ -38,9 +37,11 @@ public class AltaPedido extends JInternalFrame {
 	protected JButton nuevo;
 	protected JTextArea detalleText;
 	protected JTable table;
+	private JLabel lblTotal;
+	protected JLabel lblTotal_1;
 
 	public AltaPedido() {
-		setBounds(100, 100, 955, 562);
+		setBounds(100, 100, 955, 537);
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[] { 901, 0 };
 		gridBagLayout.rowHeights = new int[] { 140, 140, 208, 35, 0 };
@@ -210,6 +211,20 @@ public class AltaPedido extends JInternalFrame {
 		gbc_detalleText.gridx = 4;
 		gbc_detalleText.gridy = 2;
 		panel_1.add(detalleText, gbc_detalleText);
+		
+		lblTotal = new JLabel("Total : ");
+		GridBagConstraints gbc_lblTotal = new GridBagConstraints();
+		gbc_lblTotal.insets = new Insets(0, 0, 5, 5);
+		gbc_lblTotal.gridx = 6;
+		gbc_lblTotal.gridy = 2;
+		panel_1.add(lblTotal, gbc_lblTotal);
+		
+		lblTotal_1 = new JLabel("0.00\u20AC");
+		GridBagConstraints gbc_lblTotal_1 = new GridBagConstraints();
+		gbc_lblTotal_1.insets = new Insets(0, 0, 5, 5);
+		gbc_lblTotal_1.gridx = 7;
+		gbc_lblTotal_1.gridy = 2;
+		panel_1.add(lblTotal_1, gbc_lblTotal_1);
 
 		Label label_4 = new Label("Precio");
 		GridBagConstraints gbc_label_4 = new GridBagConstraints();
@@ -289,12 +304,6 @@ public class AltaPedido extends JInternalFrame {
 			}
 		));
 		scrollPane.setViewportView(table);
-
-		JLabel lblTotal_1 = new JLabel("TOTAL : 0.00");
-		GridBagConstraints gbc_lblTotal_1 = new GridBagConstraints();
-		gbc_lblTotal_1.gridx = 0;
-		gbc_lblTotal_1.gridy = 3;
-		getContentPane().add(lblTotal_1, gbc_lblTotal_1);
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);

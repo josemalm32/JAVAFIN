@@ -5,7 +5,14 @@ package Vista;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import controlUI.PintaImagen;
+
 import java.awt.GridLayout;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.WindowConstants;
@@ -13,6 +20,7 @@ import javax.swing.WindowConstants;
 
 import javax.swing.JMenuItem;
 import javax.swing.JDesktopPane;
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
 public class PrincipalUI extends JFrame {
@@ -82,5 +90,14 @@ public class PrincipalUI extends JFrame {
 		
 		 desktopPane = new JDesktopPane();
 		contentPane.add(desktopPane);
+		BufferedImage image;
+		try {
+			image = ImageIO.read(PrincipalUI.class.getResource("/recursos/fondoJAVA.png"));
+			desktopPane.setBorder(new PintaImagen(image));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+		
 	}
 }

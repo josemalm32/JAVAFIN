@@ -2,33 +2,33 @@ package controlUI;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.beans.PropertyVetoException;
 
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.WindowConstants;
 
 import Vista.PrincipalUI;
 
-
 public class controlPrincipal extends PrincipalUI {
-	
-	public controlPrincipal(){
+
+	public controlPrincipal() {
 		super();
-		
-		
+		this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 		mntmAadirArticulo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				controlNuevoArticuloUI nuevoArticuloUI = new controlNuevoArticuloUI();
 				nuevoArticuloUI.setResizable(true);
 				nuevoArticuloUI.setClosable(true);
 				nuevoArticuloUI.setMaximizable(true);
-				 nuevoArticuloUI.pack();
-				 desktopPane.add(nuevoArticuloUI);
-				 nuevoArticuloUI.setVisible(true);
+				nuevoArticuloUI.pack();
+				desktopPane.add(nuevoArticuloUI);
+				nuevoArticuloUI.setVisible(true);
 			}
 		});
-		
-		
+
 		mntmConsultarArticulo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				controlVerArticulosUI verArticulosUI = new controlVerArticulosUI();
@@ -36,11 +36,11 @@ public class controlPrincipal extends PrincipalUI {
 				verArticulosUI.setClosable(true);
 				verArticulosUI.pack();
 				verArticulosUI.setMaximizable(true);
-				 desktopPane.add(verArticulosUI);
-				 verArticulosUI.setVisible(true);
+				desktopPane.add(verArticulosUI);
+				verArticulosUI.setVisible(true);
 			}
 		});
-		
+
 		mntmAadirClientes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				controlNuevoClienteUI nuevoClienteUI = new controlNuevoClienteUI();
@@ -48,12 +48,11 @@ public class controlPrincipal extends PrincipalUI {
 				nuevoClienteUI.setClosable(true);
 				nuevoClienteUI.setMaximizable(true);
 				nuevoClienteUI.pack();
-				 desktopPane.add(nuevoClienteUI);
-				 nuevoClienteUI.setVisible(true);
+				desktopPane.add(nuevoClienteUI);
+				nuevoClienteUI.setVisible(true);
 			}
 		});
-		
-		
+
 		mntmConsultarCliente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				controlVerClienteUI controlVerClienteUI = new controlVerClienteUI();
@@ -61,12 +60,11 @@ public class controlPrincipal extends PrincipalUI {
 				controlVerClienteUI.setClosable(true);
 				controlVerClienteUI.setMaximizable(true);
 				controlVerClienteUI.pack();
-				 desktopPane.add(controlVerClienteUI);
-				 controlVerClienteUI.setVisible(true);
+				desktopPane.add(controlVerClienteUI);
+				controlVerClienteUI.setVisible(true);
 			}
 		});
-		
-		
+
 		mntmNuevoPedido.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				controlNuevoPedidoUI nuevoPedido = new controlNuevoPedidoUI();
@@ -74,28 +72,28 @@ public class controlPrincipal extends PrincipalUI {
 				nuevoPedido.setClosable(true);
 				nuevoPedido.setMaximizable(true);
 				nuevoPedido.pack();
-				 desktopPane.add(nuevoPedido);
-				 nuevoPedido.setVisible(true);
-				 try {
-					 nuevoPedido.setMaximum(true);
-					} catch (PropertyVetoException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
+				desktopPane.add(nuevoPedido);
+				nuevoPedido.setVisible(true);
+				try {
+					nuevoPedido.setMaximum(true);
+				} catch (PropertyVetoException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		});
-		
+
 		mntmConsultarPedido.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				controlVerPedido verPedido = new controlVerPedido();
 				verPedido.setResizable(true);
 				verPedido.setMaximizable(true);
-			
+
 				verPedido.setClosable(true);
 				verPedido.pack();
-				 desktopPane.add(verPedido);
-				 verPedido.setVisible(true);
-				 try {
+				desktopPane.add(verPedido);
+				verPedido.setVisible(true);
+				try {
 					verPedido.setMaximum(true);
 				} catch (PropertyVetoException e) {
 					// TODO Auto-generated catch block
@@ -103,21 +101,32 @@ public class controlPrincipal extends PrincipalUI {
 				}
 			}
 		});
-		
+
 		salir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				int respuesta = JOptionPane.showConfirmDialog(null, "Va a cerrar el programa, ¿esta seguro?", "AVISO!!!!!", JOptionPane.YES_NO_OPTION);
-		        if (respuesta == JOptionPane.YES_OPTION) {
-		        	JOptionPane.showMessageDialog(null, "JMASTUDIO Recomienda hacer copias de seguridad periodicamente");
-		          System.exit(0);
-		        }
+				int respuesta = JOptionPane.showConfirmDialog(null, "Va a cerrar el programa, ¿esta seguro?",
+						"AVISO!!!!!", JOptionPane.YES_NO_OPTION);
+				if (respuesta == JOptionPane.YES_OPTION) {
+					JOptionPane.showMessageDialog(null,"JMASTUDIO Recomienda hacer copias de seguridad periodicamente");
+					System.exit(0);
+				}
 			}
 		});
-		
+
+		this.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent ev) {
+				int respuesta = JOptionPane.showConfirmDialog(null, "Va a cerrar el programa, ¿esta seguro?",
+						"AVISO!!!!!", JOptionPane.YES_NO_OPTION);
+				if (respuesta == JOptionPane.YES_OPTION) {
+					JOptionPane.showMessageDialog(null,
+							"JMASTUDIO Recomienda hacer copias de seguridad periodicamente");
+					System.exit(0);
+				}else {
+					
+				}
+			}
+		});
+
 	}
-	
-	
-
-
 
 }
