@@ -112,6 +112,15 @@ public class controlPrincipal extends PrincipalUI {
 				}
 			}
 		});
+		
+		
+		
+		info.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				JOptionPane.showMessageDialog(null,"Realizado por Oscar Paredes, Mario Fernandez y Jose Manuel Carretero. DESPUES DE HACER PRUEBAS BORRAR LOS ARCHIVOS DE DATOS!!!!!");
+			}
+		});
+		
 
 		this.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent ev) {

@@ -34,6 +34,8 @@ public class PrincipalUI extends JFrame {
 	protected JMenuItem mntmAadirClientes;
 	protected JMenuItem mntmConsultarCliente;
 	protected JMenuItem salir;
+	protected JMenuItem info;
+	
 	
 	public PrincipalUI() {
 		setTitle("JMAGEST");
@@ -80,9 +82,17 @@ public class PrincipalUI extends JFrame {
 		mntmConsultarPedido.setIcon(new ImageIcon(PrincipalUI.class.getResource("/recursos/Text preview.png")));
 		mnPedidos.add(mntmConsultarPedido);
 		
+		JMenu mnNewMenu = new JMenu("Otros");
+		mnNewMenu.setIcon(new ImageIcon(PrincipalUI.class.getResource("/recursos/Pinion.png")));
+		menuBar.add(mnNewMenu);
+		
+		 info = new JMenuItem("Informacion");
+		info.setIcon(new ImageIcon(PrincipalUI.class.getResource("/recursos/Help.png")));
+		mnNewMenu.add(info);
+		
 		salir = new JMenuItem("Salir");
+		mnNewMenu.add(salir);
 		salir.setIcon(new ImageIcon(PrincipalUI.class.getResource("/recursos/Turn off.png")));
-		menuBar.add(salir);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
